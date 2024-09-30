@@ -35,7 +35,7 @@ export default async function Hobbies() {
        {
         return (
           
-          <tr >
+          <tr key={a.id}>
         <td >{a.nombre}</td>
         <td >{a.descripcion}</td>
         <td >   Eliminar </td>

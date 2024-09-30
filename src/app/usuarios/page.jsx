@@ -25,7 +25,7 @@ export default async function Usuarios() {
         {usuarios.map((a)=>
        {
         return (
-          <tr>
+          <tr key={a.id}>
         <td >{a.nombres}</td>
         <td >{a.apellidos}</td>
         <td >{a.telefono}</td>

@@ -30,13 +30,20 @@ const formSchema=z.object({
         }
         })
 
+
+        function createFormBody(details: Record<string, string>): string {
+          const formBody = Object.keys(details)
+              .map(key => encodeURIComponent(key) + '=' + encodeURIComponent(details[key]))
+              .join('&');
+          
+          return formBody;
+      }
+
         const handleSubmit =async (values:z.infer<typeof formSchema> )=>{
           
-          
-let details=values;
 
 
-const formBody = Object.keys(details).map(key => encodeURIComponent(key) + '=' + encodeURIComponent(details[key])).join('&');
+const formBody = createFormBody(values);
 console.log(formBody);
 
 const res = await fetch("http://34.173.49.95:3000/usuarios", { 
