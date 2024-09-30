@@ -13,17 +13,20 @@ import { Button } from '@/components/ui/button';
 
 
 const formSchema=z.object({
-  nombre: z.string(),
-  descripcion: z.string()
+  nombres: z.string(),
+  apellidos: z.string(),
+  telefono: z.string()
 });
 
-    export default  function nuevoHobbie() {
+    export default  function nuevoUsuario() {
         const router= useRouter();
 
         const form=useForm<z.infer<typeof formSchema>>({
           resolver: zodResolver(formSchema),
-          defaultValues: {nombre:"",
-          descripcion:""
+          defaultValues: {
+            nombres:"",
+            apellidos:"",
+          telefono:""
         }
         })
 
@@ -36,25 +39,25 @@ let details=values;
 const formBody = Object.keys(details).map(key => encodeURIComponent(key) + '=' + encodeURIComponent(details[key])).join('&');
 console.log(formBody);
 
-const res = await fetch("http://34.173.49.95:3000/hobbies", { 
+const res = await fetch("http://34.173.49.95:3000/usuarios", { 
   method: "POST",
   headers: {
     'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
   },
 body: formBody});
 
-router.push("/hobbies");
+router.push("/usuarios");
         };
 
         return (
     <Form {...form}>
 <form onSubmit={form.handleSubmit(handleSubmit)}>
-            <FormField control={form.control} name="nombre" render={({field})=>{
+            <FormField control={form.control} name="nombres" render={({field})=>{
             return <FormItem>
               <FormLabel>Nombre</FormLabel>
               <FormControl>
-                <Input placeholder="Nombre:"
-                type= "nombre" 
+                <Input placeholder="Nombres:"
+                type= "nombres" 
                 {...field}
                 />
               </FormControl>
@@ -62,12 +65,25 @@ router.push("/hobbies");
             </FormItem>
             }}
             />
-            <FormField control={form.control} name="descripcion" render={({field})=>{
+            <FormField control={form.control} name="apellidos" render={({field})=>{
             return <FormItem>
               <FormLabel>Descripcion</FormLabel>
               <FormControl>
-                <Input placeholder="Descripcion:"
-                type= "descripcion" 
+                <Input placeholder="Apellidos:"
+                type= "apellidos" 
+                {...field}
+                />
+              </FormControl>
+
+            </FormItem>
+            }}
+            />
+            <FormField control={form.control} name="telefono" render={({field})=>{
+            return <FormItem>
+              <FormLabel>Descripcion</FormLabel>
+              <FormControl>
+                <Input placeholder="Telefono:"
+                type= "telefono" 
                 {...field}
                 />
               </FormControl>

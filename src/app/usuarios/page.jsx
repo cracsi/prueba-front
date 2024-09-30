@@ -1,7 +1,8 @@
+import Link from 'next/link'
 
 const getUsuarios=async()=>
   {
-    const res = await fetch("http://localhost:3001/usuarios", { cache: 'no-store' });
+    const res = await fetch("http://34.173.49.95:3000/usuarios", { cache: 'no-store' });
     return res;
   
   }
@@ -32,6 +33,6 @@ export default async function Usuarios() {
 })}
         </tbody>
     </table>
-    
+    <button  className="button-op"><Link href="/nuevoUsuario">Agregar Usuario</Link></button>
 </main>);
 }
